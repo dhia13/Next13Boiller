@@ -1,17 +1,17 @@
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
+// import { createStore, applyMiddleware } from "redux";
+// import thunk from "redux-thunk";
+// import { composeWithDevTools } from "redux-devtools-extension";
 
-import rootReducer from "./Reducers/index";
+import { configureStore } from "@reduxjs/toolkit";
+import user from "./reducers/userSlice";
 
-const initalState = {};
+// const middleware = [thunk];
 
-const middleware = [thunk];
-
-export const store = createStore(
-  rootReducer,
-  initalState,
-  composeWithDevTools(applyMiddleware(...middleware))
-);
-import { persistStore } from "redux-persist";
-export const persistor = persistStore(store);
+export const store = configureStore({
+  // Automatically calls `combineReducers`
+  reducer: {
+    user,
+  },
+});
+// import { persistStore } from "redux-persist";
+// export const persistor = persistStore(store);
